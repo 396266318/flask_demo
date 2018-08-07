@@ -2,6 +2,7 @@ import os
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'you-will-never-guess'
+    test = 00000
 
 #     OPENID_PROVIDERS = [
 #     { 'name': 'Google', 'url': 'https://www.google.com/accounts/o8/id' },
