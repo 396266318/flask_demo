@@ -5,7 +5,7 @@ time: 2018/8/16 16:38
 """
 from flask import render_template
 from app import app, db
-import pytest
+
 
 
 @app.errorhandler(404)
