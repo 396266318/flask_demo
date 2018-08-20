@@ -6,10 +6,6 @@
             </a>
         </td>
         <td>
-{#            <a href="{{ url_for('user', username=post.author.username) }}">#}
-{#                {{ post.author.username }}#}
-{#            </a>#}
-{#            said {{ moment(post.timestamp).fromNow() }};#}
             {% set user_link %}
                 <a href="{{ url_for('user', username=post.author.username)}}">
                     {{ post.author.username }}
@@ -17,7 +13,17 @@
             {% endset %}
             {{ _('%(username)s said %(when)s', username=user_link, when=moment(post.timestamp).fromNow()) }}
             <br>
-            {{ post.body }}
+            <span id="post{{ post.id }}">{{ post.body }}</span>
+            {% if post.languge and post,language != g.locale %}
+                <br><br>
+                <span id="translation{{ post.id }}">
+                    <a href="javascriot:translate(
+                                '#post{{ post.id }}',
+                                '#translation{{ post.id }}',
+                                '{{ post.language }}',
+                                '{{ g.locale }}');">{{ _('Translate') }}</a>
+                </span>
+            {% endif %}
         </td>
     </tr>
 </table>
